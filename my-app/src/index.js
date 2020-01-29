@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans&display=swap');
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
