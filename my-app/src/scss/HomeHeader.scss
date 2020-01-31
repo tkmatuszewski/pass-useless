@@ -1,0 +1,46 @@
+.homeHeader_main {
+  width: 100vw;
+  height: 963px;
+  background-color: $color6;
+  display: grid;
+  grid-template-columns: 1fr 1fr 142px ;
+  grid-template-rows: 37px 95px 1fr 1fr;
+}
+.homeHeader_menu {
+  grid-column: 2/3;
+  grid-row: 2/3;
+  display: grid;
+  grid-template-rows: 36px 42px;
+  grid-template-columns: 683px;
+  grid-gap: 17px;
+}
+.homeHeader_logIn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.homeHeader_logBtn {
+
+}
+
+.homeHeader_nav {
+  width: 683px;
+  height: 42px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.homeHeader_banner {
+  grid-column: 2/3;
+  grid-row: 3/4;
+}
+.homeHeader_img {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  background-image: url("../assets/Home-Hero-Image.jpg");
+  width: 885px;
+  height: 963px;
+  background-position: right;
+  background-size: cover;
+}
