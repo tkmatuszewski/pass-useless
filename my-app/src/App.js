@@ -1,15 +1,22 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
-import './scss/main.scss';
+import "./scss/main.scss";
 import * as Scroll from 'react-scroll';
-import { Link, Element , Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
-// import { BrowserRouter, Route, Link } from "react-router-dom";
+import {Link as Slink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Home from "./components/Home.js";
 
-function App() {
-  return (
-    <div className="App">
-    </div>
-  );
+
+class App extends Component {
+    render() {
+        return (
+            <BrowserRouter>
+                <>
+                    <Route path='/' component={Home} />
+                </>
+            </BrowserRouter>
+        );
+    }
 }
 
 export default App;
