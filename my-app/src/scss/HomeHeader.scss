@@ -1,10 +1,20 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: $color5;
+}
+
 .homeHeader_main {
   width: 100vw;
   height: 963px;
   background-color: $color6;
   display: grid;
   grid-template-columns: 1fr 1fr 142px ;
-  grid-template-rows: 37px 95px 1fr 1fr;
+  grid-template-rows: 37px 95px 350px 271px;
+  font-family: $font-base;
 }
 .homeHeader_menu {
   grid-column: 2/3;
@@ -13,6 +23,7 @@
   grid-template-rows: 36px 42px;
   grid-template-columns: 683px;
   grid-gap: 17px;
+  margin-left: 143px;
 }
 .homeHeader_logIn {
   display: flex;
@@ -21,7 +32,17 @@
 }
 
 .homeHeader_logBtn {
-
+  font-size: 13px;
+  color: $color4;
+  cursor: pointer;
+  margin-right: 30px;
+}
+.homeHeader_rgstr {
+  font-size: 13px;
+  color: $color4;
+  cursor: pointer;
+  border: 0.75px solid $color3;
+  padding: 9px 10px;
 }
 
 .homeHeader_nav {
@@ -30,10 +51,68 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 18px;
+  span {
+    padding: 9px 20px;
+    border: 0.75px solid $color5;
+  }
 }
 .homeHeader_banner {
   grid-column: 2/3;
   grid-row: 3/4;
+  display: flex;
+  flex-direction: column;
+  width: 674px;
+  height: 350px;
+  margin-top: 210px;
+}
+.homeHeader_bannerCnt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.homeHeader_bannerTitle {
+  display: block;
+  width: 673px;
+  height: 107px;
+  font-size: 38px;
+  letter-spacing: -0.76px;
+  text-align: center;
+  color: $color5;
+  span {
+    display: block;
+  }
+}
+.homeHeader_bannerDecoration {
+  background: transparent url('../assets/Decoration.svg') 0% 0% no-repeat padding-box;
+  width: 253px;
+  height: 33px;
+  margin-top: 25px;
+  margin-bottom: 65px;
+}
+.homeHeader_bannerButtons {
+  display: flex;
+  justify-content: space-between;
+}
+.homeHeader_bannerBtnL,
+.homeHeader_bannerBtnR{
+  height: 94px;
+  font-size: 36px;
+  font-weight: lighter;
+  text-align: center;
+  text-transform: uppercase;
+  color: $color5;
+  border: 0.75px solid $color5;
+  padding: 13px 93px ;
+  cursor: pointer;
+  span {
+    display: block;
+  }
+}
+.homeHeader_bannerBtnR {
+  width: 208px;
+  margin-left: 44px;
+  padding: 13px 51px;
 }
 .homeHeader_img {
   grid-column: 1/2;
