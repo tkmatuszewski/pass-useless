@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {Link as Slink, Element, Events, animateScroll as scroll, scrollSpy, scroller} from 'react-scroll';
 import data from "../firebase";
 import Charity from "./Charity";
 import Ngo from "./Ngo";
@@ -11,36 +10,77 @@ class Contributions extends Component {
         charities: [],
         ngos: [],
         localFunds: [],
-        active: {name: "charities"},
-        listCount: 0
+        active: "charities",
+        listCount: 0,
+        perPage: 3,
+        currentPage: 1
+    };
+    handleClick = (e) => {
+        const collection = e.target.dataset.name;
+        // this.setState({currentPage: 1});
+        if (collection === "charities") {
+            return this.setState({
+                listCount: this.state.charities.length,
+                currentPage : 1,
+                active : collection});
+        }
+        else if (collection === "ngos") {
+            return this.setState({
+                listCount: this.state.ngos.length,
+                currentPage : 1,
+                active : collection});
+
+        }
+        else if (collection === "localFunds") {
+            return this.setState({
+                listCount: this.state.localFunds.length,
+                currentPage : 1,
+                active : collection});
+        }
+    };
+    pageHandler = (e)=> {
+        this.setState({
+            currentPage: Number(e.target.id)
+        });
+    };
+    renderPages = () => {
+        let pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(this.state.listCount / this.state.perPage); i++) {
+            pageNumbers.push(i);
+        }
+        if (pageNumbers.length >= 2) {
+            return pageNumbers.map(number => {
+                return (
+                    <li className="contributions_pagination_btn"
+                        key={number}
+                        id={number}
+                        onClick={this.pageHandler}
+                    >
+                        {number}
+                    </li>
+                );
+            });
+        }
     };
 
-    handleClick = (e) => {
-        this.setState({active: e.target.dataset});
-        if (this.state.active.name === "charities") {
-            this.setState({listCount: this.state.charities.length})
-        }
-        if (this.state.active.name === "ngos") {
-            this.setState({listCount: this.state.ngos.length})
-        }
-        if (this.state.active.name === "localFunds") {
-            this.setState({listCount: this.state.localFunds.length})
-        }
-    };
-    bottomContent = () => {
-        if (this.state.active.name === "charities") {
-            console.log("charity");
-            return this.state.charities.map((el) => {
-                return <Charity e={el}/>
+    renderOrg = () => {
+        const indexOfLastEl = this.state.currentPage * this.state.perPage;
+        const indexOfFirstEl = indexOfLastEl - this.state.perPage;
+        let currentEl = this.state.charities.slice(indexOfFirstEl, indexOfLastEl);
+
+        if (this.state.active === "charities") {
+            currentEl = this.state.charities.slice(indexOfFirstEl, indexOfLastEl);
+            return currentEl.map((el, index) => {
+                return <Charity e={el} key ={index}/>
             })
-        } else if (this.state.active.name === "ngos") {
-            console.log("ngo");
-            return this.state.ngos.map((el) => {
+        } else if (this.state.active === "ngos") {
+            currentEl = this.state.ngos.slice(indexOfFirstEl, indexOfLastEl);
+            return currentEl.map((el) => {
                 return <Ngo e={el}/>
             })
-        } else if (this.state.active.name === "localFunds") {
-            console.log("local fund");
-            return this.state.localFunds.map((el) => {
+        } else if (this.state.active === "localFunds") {
+            currentEl = this.state.localFunds.slice(indexOfFirstEl, indexOfLastEl);
+            return currentEl.map((el) => {
                 return <LocalFund e={el}/>
             })
         }
@@ -72,13 +112,11 @@ class Contributions extends Component {
                     </div>
                 </div>
                 <div className="contributions_bottom">
-                    {this.bottomContent()}
+                    {this.renderOrg()}
                 </div>
-                {/*<div className="contributions_pagination">*/}
-                {/*    <button className="contributions_pagination_btn">1</button>*/}
-                {/*    <button className="contributions_pagination_btn">2</button>*/}
-                {/*    <button className="contributions_pagination_btn">3</button>*/}
-                {/*</div>*/}
+                <ul className="contributions_pagination">
+                    {this.renderPages()}
+                </ul>
             </div>
         )
     }
@@ -90,7 +128,8 @@ class Contributions extends Component {
                     this.setState({
                         charities: this.state.charities.concat(doc.data()),
                     });
-                })
+                });
+                this.setState({listCount : this.state.charities.length})
             });
         data.collection(`NGOs`).get().then(
             (el) => {
