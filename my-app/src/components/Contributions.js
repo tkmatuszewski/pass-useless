@@ -17,7 +17,7 @@ class Contributions extends Component {
     };
     handleClick = (e) => {
         const collection = e.target.dataset.name;
-        // this.setState({currentPage: 1});
+
         if (collection === "charities") {
             return this.setState({
                 listCount: this.state.charities.length,
