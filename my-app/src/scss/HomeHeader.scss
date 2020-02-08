@@ -13,7 +13,7 @@ a {
   background-color: $color6;
   display: grid;
   grid-template-columns: 1fr 1fr 142px ;
-  grid-template-rows: 37px 95px 350px 271px;
+  grid-template-rows: 37px 95px 350px 271px 1fr;
   font-family: $font-base;
 }
 .homeHeader_menu {
@@ -47,16 +47,20 @@ a {
 }
 
 .homeHeader_nav {
-  position: fixed;
+  //position: fixed;
   width: 683px;
   height: 42px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-size: 18px;
-  span {
+  list-style-type: none;
+  li {
+    cursor: pointer;
     padding: 9px 20px;
-    border: 0.75px solid $color5;
+    &:hover {
+      border: 0.75px solid $color5;
+    }
   }
 }
 .homeHeader_banner {

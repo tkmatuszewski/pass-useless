@@ -1,0 +1,56 @@
+.about_main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  height: 935px;
+}
+.about_left {
+  grid-column: 1/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $color1;
+  color: $color5
+}
+.about_left_cnt {
+  max-width: 657px;
+  //display: grid;
+  //grid-template-rows: 0.25fr 0.5fr 1fr 0.75fr;
+  //align-items: end;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.about_left_title {
+  font-size: 38px;
+  text-align: center;
+  letter-spacing: -0.76px;
+}
+.about_left_decor {
+  width: 253px;
+  height: 33px;
+  background: url("../assets/Decoration.svg");
+  margin-top: 55px;
+  margin-bottom: 65px;
+}
+.about_left_content {
+  font-size: 30px;
+  text-align: center;
+  letter-spacing: -0.6px;
+  line-height: 1.54 ;
+  margin-bottom: 40px;
+}
+.about_left_sign_cnt {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.about_left_sign {
+  background: url("../assets/Signature.svg");
+  height: 150px;
+  width: 210px;
+}
+.about_right {
+  background: url("../assets/People.jpg") no-repeat;
+}

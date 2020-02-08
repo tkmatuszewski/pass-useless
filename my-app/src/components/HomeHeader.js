@@ -1,30 +1,22 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {Link as Blink} from "react-scroll"
+import { Link as ScrollLink } from 'react-scroll'
+
 
 function HomeHeader() {
-    // state = {
-    //   active : false
-    // };
-    // function activate  {
-    //     this.setState({active: !this.state.active});
-    //     if (this.state.active) {
-    //         this.className={"active"}
-    //     }
-    // };
     return (
-        <div className={"homeHeader_main"}>
+        <div className={"homeHeader_main"} id="home">
             <div className={"homeHeader_menu"}>
                 <div className={"homeHeader_logIn"}>
                     <div className={"homeHeader_logBtn"}><Link to="/logowanie">Zaloguj</Link></div>
                     <div className={"homeHeader_rgstr"}><Link to="/rejestracja">Załóż konto</Link></div>
                 </div>
                 <nav className={"homeHeader_nav"}>
-                    <span><Blink to={"/start"}> Start </Blink></span>
-                    <span>O co chodzi?</span>
-                    <span>O nas</span>
-                    <span>Fundacja i Oranizacje</span>
-                    <span>Kontakt</span>
+                    <li><ScrollLink to="home" smooth={true}>Start</ScrollLink></li>
+                    <li><ScrollLink to="fourSteps" smooth={true}>O co chodzi?</ScrollLink></li>
+                    <li><ScrollLink to="about" smooth={true}>O nas</ScrollLink></li>
+                    <li><ScrollLink to="contributions" smooth={true}>Fundacja i Oranizacje</ScrollLink></li>
+                    <li><ScrollLink to="contact" smooth={true}>Kontakt</ScrollLink></li>
                 </nav>
             </div>
             <div className={"homeHeader_banner"}>
