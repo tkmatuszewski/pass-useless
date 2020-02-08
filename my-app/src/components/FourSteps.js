@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 
 function FourSteps() {
     return (
-        <div className={"fourSteps_main"}>
+        <div className={"fourSteps_main"} id="fourSteps">
             <div className={"fourSteps_top"}>
                 <div className={"fourSteps_top_title"}>
                     Wystarczą 4 proste kroki

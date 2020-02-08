@@ -5,40 +5,61 @@ import Ngo from "./Ngo";
 import LocalFund from "./LocalFund";
 
 class Contributions extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            charities: [],
+            ngos: [],
+            localFunds: [],
+            active: "charities",
+            listCount: 0,
+            perPage: 3,
+            currentPage: 1,
+        };
+    };
 
-    state = {
-        charities: [],
-        ngos: [],
-        localFunds: [],
-        active: "charities",
-        listCount: 0,
-        perPage: 3,
-        currentPage: 1
+    handleClass = (e) => {
+        if (e.target.className.includes("active")) {
+            console.log("active already");
+        } else {
+            e.target.className = e.target.className + " active";
+        }
     };
     handleClick = (e) => {
-        const collection = e.target.dataset.name;
+        const id = e.target.id;
+        const items = document.querySelectorAll(".contributions_list_item");
+        items.forEach(el=> {
+           el.classList.remove("active")
+        });
+        this.handleClass(e);
 
-        if (collection === "charities") {
+        if (id === "charities") {
             return this.setState({
                 listCount: this.state.charities.length,
-                currentPage : 1,
-                active : collection});
-        }
-        else if (collection === "ngos") {
+                currentPage: 1,
+                active: id
+            });
+        } else if (id === "ngos") {
             return this.setState({
                 listCount: this.state.ngos.length,
-                currentPage : 1,
-                active : collection});
+                currentPage: 1,
+                active: id
+            });
 
-        }
-        else if (collection === "localFunds") {
+        } else if (id === "localFunds") {
             return this.setState({
                 listCount: this.state.localFunds.length,
-                currentPage : 1,
-                active : collection});
+                currentPage: 1,
+                active: id
+            });
         }
     };
-    pageHandler = (e)=> {
+    pageHandler = (e) => {
+        const btn = document.querySelectorAll(".contributions_pagination_btn");
+        btn.forEach(el=> {
+            el.classList.remove("active")
+        });
+        e.target.className = e.target.className + " active";
         this.setState({
             currentPage: Number(e.target.id)
         });
@@ -71,17 +92,17 @@ class Contributions extends Component {
         if (this.state.active === "charities") {
             currentEl = this.state.charities.slice(indexOfFirstEl, indexOfLastEl);
             return currentEl.map((el, index) => {
-                return <Charity e={el} key ={index}/>
+                return <Charity e={el} key={index}/>
             })
         } else if (this.state.active === "ngos") {
             currentEl = this.state.ngos.slice(indexOfFirstEl, indexOfLastEl);
-            return currentEl.map((el) => {
-                return <Ngo e={el}/>
+            return currentEl.map((el, index) => {
+                return <Ngo e={el} key={index}/>
             })
         } else if (this.state.active === "localFunds") {
             currentEl = this.state.localFunds.slice(indexOfFirstEl, indexOfLastEl);
-            return currentEl.map((el) => {
-                return <LocalFund e={el}/>
+            return currentEl.map((el, index) => {
+                return <LocalFund e={el} key={index}/>
             })
         }
     };
@@ -95,14 +116,14 @@ class Contributions extends Component {
                             <div className="contributions_decor"></div>
                         </div>
                         <div className="contributions_list">
-                            <div className="contributions_list_item" onClick={this.handleClick}
-                                 data-name="charities">Fundacjom
+                            <div className="contributions_list_item active" onClick={this.handleClick}
+                                 id="charities">Fundacjom
                             </div>
                             <div className="contributions_list_item" onClick={this.handleClick}
-                                 data-name={"ngos"}>Organizacjom pozarządowym
+                                 id="ngos">Organizacjom pozarządowym
                             </div>
                             <div className="contributions_list_item" onClick={this.handleClick}
-                                 data-name="localFunds">Lokalnym zbiórkom
+                                 id="localFunds">Lokalnym zbiórkom
                             </div>
                         </div>
                         <div className="contributions_info">W naszej bazie znajdziesz listę zweryfikowanych Fundacji, z
@@ -123,26 +144,26 @@ class Contributions extends Component {
 
     componentDidMount() {
         data.collection(`charities`).get().then(
-            (el) => {
-                el.docs.map((doc) => {
-                    this.setState({
+            el => {
+                el.docs.map(doc => {
+                    return this.setState({
                         charities: this.state.charities.concat(doc.data()),
                     });
                 });
-                this.setState({listCount : this.state.charities.length})
+                this.setState({listCount: this.state.charities.length})
             });
         data.collection(`NGOs`).get().then(
-            (el) => {
-                el.docs.map((doc) => {
-                    this.setState({
+            el => {
+                el.docs.map(doc => {
+                    return this.setState({
                         ngos: this.state.ngos.concat(doc.data()),
                     });
                 })
             });
         data.collection(`localFunds`).get().then(
-            (el) => {
-                el.docs.map((doc) => {
-                    this.setState({
+            el => {
+                el.docs.map(doc => {
+                    return this.setState({
                         localFunds: this.state.localFunds.concat(doc.data()),
                     });
                 })

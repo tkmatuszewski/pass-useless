@@ -38,8 +38,13 @@
 .contributions_list_item {
   font-size: 24px;
   line-height: 1.25;
+  height: 57px;
   max-width: 160px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 23px 42px;
 }
 .contributions_info {
   font-size: 22px;
@@ -51,7 +56,13 @@
 
 .contributions_bottom {
   width: 80%;
+  height: 345px;
 }
+
+.contributions_bottom > div:nth-child(3) {
+  border-bottom: none;
+}
+
 .contributions_item {
   font-family: $font-alt;
   color: $color5;
@@ -60,9 +71,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.contributions_item_left {
-
 }
 .contributions_item_left_title {
   font-size: 26px;
@@ -82,9 +90,11 @@
 .contributions_pagination_btn {
   font-family: $font-base;
   font-size: 18px;
-  padding: 13px;
+  padding: 15px;
   background-color: transparent;
-  border: 1px solid #707070;
   cursor: pointer;
-  margin-top: 63px;
+  margin: 50px 20px;
+}
+.active{
+  border: 0.75px solid $color4;
 }
