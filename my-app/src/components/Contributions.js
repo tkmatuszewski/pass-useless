@@ -3,6 +3,7 @@ import data from "../firebase";
 import Charity from "./Charity";
 import Ngo from "./Ngo";
 import LocalFund from "./LocalFund";
+import classNames from 'classnames';
 
 class Contributions extends Component {
     constructor(props) {
@@ -72,7 +73,7 @@ class Contributions extends Component {
         if (pageNumbers.length >= 2) {
             return pageNumbers.map(number => {
                 return (
-                    <li className="contributions_pagination_btn"
+                    <li className={classNames("contributions_pagination_btn", {active: number === this.state.currentPage})}
                         key={number}
                         id={number}
                         onClick={this.pageHandler}
