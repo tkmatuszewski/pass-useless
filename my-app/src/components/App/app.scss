@@ -1,0 +1,15 @@
+@import "../../../node_modules/normalize.css";
+@import "settings/fonts";
+@import "settings/colors";
+@import "../HomeHeader/HomeHeader";
+@import "../HomeThreeColumns/HomeThreeColumns";
+@import "../FourSteps/FourSteps";
+@import "../About/About";
+@import "../Contributions/Contributions";
+@import "../ContactForm/ContactForm";
+@import "../Login/LogIn";
+@import "../Register/Register";
+
+body {
+  font-family: $font-base;
+}

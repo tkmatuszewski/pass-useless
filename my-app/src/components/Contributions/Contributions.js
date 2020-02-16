@@ -1,8 +1,8 @@
 import React, {Component} from "react";
-import data from "../firebase";
-import Charity from "./Charity";
-import Ngo from "./Ngo";
-import LocalFund from "./LocalFund";
+import {data} from "../Firebase/firebase.js";
+import Charity from "../Charity/Charity";
+import Ngo from "../Ngo/Ngo";
+import LocalFund from "../LocalFund/LocalFund";
 import classNames from 'classnames';
 
 class Contributions extends Component {

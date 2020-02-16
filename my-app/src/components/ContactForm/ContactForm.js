@@ -1,19 +1,14 @@
 import React, {Component} from "react";
 
 class ContactForm extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
+
+        state = {
             name: "",
             email: "",
             message: "",
             successMsg: "",
-            error: [],
-            errorName : "",
-            errorEmail: "",
-            errorMessage: ""
-        }
-    }
+            error: {},
+        };
 
     saveData = (e) => {
         this.setState({
@@ -28,32 +23,38 @@ class ContactForm extends Component {
         e.preventDefault();
         e.target.reset();
         //name
-        const name = this.state.name;
+        const { name, message, email } = this.state;
+        const error = {};
         if ((name.split(" ").length >= 2) || (name === "")) {
             let err = "Podane imię jest nieprawidłowe!";
-            this.setState({errorName : err})
+            error.name = err
         } else {
             console.log("name correct");
         }
         //    email
-        const mail = this.state.email;
-        if ((this.validateEmail(mail)) && (mail !=="")) {
+
+        if ((this.validateEmail(email)) && (email !=="")) {
             console.log("email vaild");
         } else {
             let err = "Podany email jest nieprawidłowy!";
-            this.setState({errorEmail: err})
+            error.email = err
         }
         //    message
-        const message = this.state.message;
+
         if (message.length < 120) {
             let err = "Wiadomość musi mieć co najmniej 120 znaków!";
-            this.setState({errorMessage: err})
+            error.message = err
         }
+
         else {
             console.log("message valid");
         }
         //fetch
-        if (this.state.error.length === 0) {
+        this.setState({
+            error
+        });
+
+        if (!Object.keys(error).length) {
             fetch(`https://fer-api.coderslab.pl/v1/portfolio/contact`, {
                 method: 'POST',
                 headers: {
@@ -86,6 +87,7 @@ class ContactForm extends Component {
     ;
 
     render() {
+        const { email, message, name } = this.state.error;
         return (
             <div className="contactForm_main" id="contact">
                 <div className="contactForm_top">
@@ -101,16 +103,16 @@ class ContactForm extends Component {
                         <form action="" className="contactForm_form" onSubmit={this.submitHandler}>
                             <label htmlFor="" placeholder="Krzysztof" className="contactForm_form_name">Wpisz swoje imię
                                 <input name="name" type="text" onChange={this.saveData}/>
-                                <span className="contactForm_form_error"> {this.state.errorName}</span>
+                                <span className="contactForm_form_error"> {name}</span>
                             </label>
                             <label htmlFor="" className="contactForm_form_mail">Wpisz swój email
                                 <input type="email" name="email" placeholder="abc@xyz.pl" onChange={this.saveData}/>
-                                <span className="contactForm_form_error"> {this.state.errorEmail}</span>
+                                <span className="contactForm_form_error"> {email}</span>
                             </label>
                             <label htmlFor="" className="contactForm_form_msg">Wpisz swoją wiadomość
                                 <textarea name="message" onChange={this.saveData}
                                           placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."/>
-                                <span className="contactForm_form_error"> {this.state.errorMessage}</span>
+                                <span className="contactForm_form_error"> {message}</span>
                             </label>
                             <button type="submit" className="contactForm_form_btn">Wyślij</button>
                         </form>

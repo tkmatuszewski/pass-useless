@@ -21,9 +21,14 @@ a {
   grid-row: 2/3;
   display: grid;
   grid-template-rows: 36px 42px;
-  grid-template-columns: 683px;
-  grid-gap: 17px;
-  margin-left: 143px;
+  //grid-template-columns: 683px;
+  //grid-gap: 17px;
+}
+.homeHeader_menu_mask {
+  position: fixed;
+  background-color: white;
+  width: 100vw;
+  height: 140px;
 }
 .homeHeader_logIn {
   display: flex;
@@ -90,7 +95,7 @@ a {
   }
 }
 .homeHeader_bannerDecoration {
-  background: transparent url('../assets/Decoration.svg') 0% 0% no-repeat padding-box;
+  background: transparent url('../../assets/Decoration.svg') 0% 0% no-repeat padding-box;
   width: 253px;
   height: 33px;
   margin-top: 25px;
@@ -123,7 +128,7 @@ a {
 .homeHeader_img {
   grid-column: 1/2;
   grid-row: 1/3;
-  background-image: url("../assets/Home-Hero-Image.jpg");
+  background-image: url("../../assets/Home-Hero-Image.jpg");
   width: 885px;
   height: 963px;
   background-position: right;

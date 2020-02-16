@@ -33,7 +33,6 @@ function HomeThreeComumns() {
                     Aliquam erat volutpat.
                 </div>
             </div>
-
         </div>
     )
 }
